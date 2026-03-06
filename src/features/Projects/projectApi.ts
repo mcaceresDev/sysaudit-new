@@ -1,0 +1,19 @@
+import { request } from "../../services/api/axiosClient"
+import type { Project } from "./project.types"
+
+export const fetchProjectsRequest = async () => {
+//   const response = await api.get('/projects')
+  const response = await request<Project[]>({
+    url: "/projects"
+  })
+  return response
+}
+
+export const createProjectRequest = async (data: Project) => {
+  const response = await request({
+    method: "post",
+    url: "/projects",
+    data
+  })
+  return response
+}
