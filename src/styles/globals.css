@@ -1,0 +1,23 @@
+/* .main-app-container {
+    min-height: 100vh;
+} */
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  /* font-family: 'UbuntuMono' !important; */
+}
+
+#root {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* :root {
+  --bs-body-font-family: 'UbuntuMono', system-ui, -apple-system, sans-serif;
+} */
