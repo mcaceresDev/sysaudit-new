@@ -12,6 +12,7 @@
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@reduxjs/toolkit": "^2.11.2",
+    "@tanstack/react-table": "^8.21.3",
     "axios": "^1.13.6",
     "bootstrap": "^5.3.8",
     "lucide-react": "^0.577.0",
