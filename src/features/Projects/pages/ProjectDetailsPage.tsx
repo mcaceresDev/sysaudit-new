@@ -1,53 +1,88 @@
-import { Info, SquarePen, UserPlus } from 'lucide-react'
-import React from 'react'
+import { Box, Cloudy, Info, Link, SquarePen, UserPlus, User, Users } from 'lucide-react'
+import "../styles/details.css"
 
 const ProjectDetailsPage = () => {
     return (
-        <div>
-            <h2>Cloudflare</h2>
-            <hr />
-            <p>Proyecto para reportes estadisticos de trafico de Cloudflare</p>
+        <div className='details-container rounded bg-light border'>
 
-            <h4>Stack</h4>
-            <p>Java, Primefaces, Spring boot</p>
-
-            <h4>Equipo</h4>
-            <hr />
-            <div className="rounded border px-4 py-3 my-3 d-flex justify-content-between">
-                <div>
-                    <h5 className="card-title">Manuel Cáceres Mercado</h5>
-                    <span>Lider de proyecto</span>
-                    <p className="card-text">mcaceres@internal.inss.org</p>
-
-                    <h5>Colaboradores</h5>
-                    <ul className='list-unstyled'>
-                        <li>Josue Sanchez Gomez</li>
-                        <li>Victor Caceres Juarez</li>
-                        <li>Yader García Ramírez</li>
-                    </ul>
+            <div className='header py-3 px-3 bg-white border-bottom'>
+                <div className='d-flex justify-content-between align-items-center'>
+                    <h2>Cloudflare</h2>
+                    <button className="btn btn-sm btn-outline-primary">Editar proyecto</button>
                 </div>
-                <div>
-                    <button className="btn btn-sm btn-outline-warning"><SquarePen size={18} /></button>
-                    <button className="btn btn-sm btn-outline-primary mx-2"><UserPlus size={18}/></button>
-                </div>
+                <hr />
+                <p>Proyecto para reportes estadisticos de trafico de Cloudflare</p>
+                <p> <span className='fw-bold'>Tecnologías:</span> Java, Primefaces, Spring boot</p>
             </div>
-            
-            <h4>Servicios</h4>
-            <hr />
-            <div className="rounded border px-4 py-3 my-3 d-flex justify-content-between">
-                <div>
-                    <h6>Cloudflare WS</h6>
-                    <p>Servicio provisional</p>
-                    <ul className='list-unstyled'>
-                        <li>Tipo: REST</li>
-                        <li>Endpoints: 120</li>
-                    </ul>
-                </div>
-                <div>
-                    <button className="btn btn-sm btn-outline-primary mx-2"><SquarePen size={18} /></button>
-                    <button className="btn btn-sm btn-outline-primary"><Info size={18} /></button> 
-                </div>
+
+            <div className='m-3 p-3 d-flex justify-content-between gap-3 bg-white border rounded'>
+                <div><Cloudy /> 3 Servicios</div>
+                <div><Link /> 15 Endpoints</div>
+                <div><Users /> 4 Miembros</div>
             </div>
+
+            <div className='m-3 p-3 border rounded bg-white'>
+                <div className='d-flex justify-content-between'>
+                    <h4>Equipo</h4>
+                    <div>
+                        <button className="btn btn-sm btn-outline-primary mx-2">Administrar</button>
+                        <button className="btn btn-sm btn-outline-primary"><UserPlus size={16} /> Invitar Miembro</button>
+                    </div>
+                </div>
+                <hr />
+
+                <h5>CF Team</h5>
+                <div className='d-flex gap-4 align-items-center'>
+                    <div className='d-flex gap-2 my-3'>
+                        <div className='border rounded-circle p-3 bg-primary-subtle'>
+                            <User size={40} />
+                        </div>
+                        <div>
+                            <span className='d-block fw-bold'>Manuel Cáceres M.</span>
+                            <span>Lider de proyecto</span> <br />
+                            <span>mcaceres@internal.inss.org</span>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+
+                <h5>Colaboradores</h5>
+                <hr />
+                <ul className='list-unstyled'>
+                    <li><User /> Josue Sanchez Gomez</li>
+                    <li><User /> Victor Caceres Juarez</li>
+                    <li><User /> Yader García Ramírez</li>
+                </ul>
+            </div>
+
+            <div className='m-3 p-3 border rounded bg-white'>
+                <div className='d-flex justify-content-between'>
+                    <h4>Servicios</h4>
+                </div>
+                <hr />
+
+                <div className='my-3 alert border'>
+                    <div className='d-flex justify-content-between'>
+                        <h5>Cloudflare WS</h5>
+                        <button className="btn btn-sm btn-outline-primary mx-2">Administrar</button>
+                    </div>
+                    <hr />
+                    <p><Link size={16} /> 15 endpoints</p>
+                    <p><Box /> REST</p>
+                </div>
+                
+                <div className='my-3 alert border'>
+                    <div className='d-flex justify-content-between'>
+                        <h5>Servicios Cloudflare WS</h5>
+                        <button className="btn btn-sm btn-outline-primary mx-2">Administrar</button>
+                    </div>
+                    <hr />
+                    <p><Link size={16} /> 15 endpoints</p>
+                    <p><Box /> REST</p>
+                </div>
+
+            </div>
+
         </div>
     )
 }

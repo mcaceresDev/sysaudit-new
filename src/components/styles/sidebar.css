@@ -3,7 +3,7 @@
     max-width: 250px;
     height: calc(100vh - 60px);
     left: 0;
-    top: 0;
+    bottom: 0;
     transition: width 0.3s ease;
     /* position: fixed; */
 }

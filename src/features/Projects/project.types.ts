@@ -4,6 +4,11 @@ export interface Project {
   description?: string
 }
 
+export interface UpdateProjectDTO {
+  name?: string
+  description?: string
+}
+
 export interface ServiceAssoc {
     id: number
     project_id?: number
