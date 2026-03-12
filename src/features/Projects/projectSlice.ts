@@ -1,10 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { fetchProjectsRequest } from './projectApi'
+import { fetchProjectsRequest, createProjectRequest } from './projectApi'
 
 export const fetchProjects = createAsyncThunk(
   'projects/fetch',
   async () => {
     return await fetchProjectsRequest()
+  }
+)
+
+export const createProject = createAsyncThunk(
+  'projects/create',
+  async (data: any) => {
+    return await createProjectRequest(data)
   }
 )
 
@@ -33,9 +40,14 @@ const projectsSlice = createSlice({
         state.loading = false
         state.items = action.payload
       })
+      // FETCH
       .addCase(fetchProjects.rejected, state => {
         state.loading = false
         state.error = 'Error al cargar proyectos'
+      })
+      // CREATE
+      .addCase(createProject.fulfilled, (state, action) => {
+        state.items.push(action.payload)
       })
   }
 })

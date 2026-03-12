@@ -7,6 +7,13 @@ export interface Project {
 export interface UpdateProjectDTO {
   name?: string
   description?: string
+  tecnologies?: string
+}
+
+export interface ProjectFormData {
+  name: string
+  description?: string
+  tecnologies?: string
 }
 
 export interface ServiceAssoc {

@@ -17,3 +17,12 @@ export const createProjectRequest = async (data: Project) => {
   })
   return response
 }
+
+export const updateProjectRequest = async (id: number, data: any) => {
+  const response = await request({
+    method: "put",
+    url: `/projects/${id}`,
+    data
+  })
+  return response
+}

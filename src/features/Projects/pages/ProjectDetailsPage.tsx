@@ -16,14 +16,14 @@ const ProjectDetailsPage = () => {
             </div>
 
             <div className='m-3 p-3 d-flex justify-content-between gap-3 bg-white border rounded'>
-                <div><Cloudy /> 3 Servicios</div>
-                <div><Link /> 15 Endpoints</div>
-                <div><Users /> 4 Miembros</div>
+                <div><span className='text-primary'><Cloudy /></span> 3 Servicios</div>
+                <div><span className='text-primary'><Link /></span> 15 Endpoints</div>
+                <div><span className='text-primary'><Users /></span> 4 Miembros</div>
             </div>
 
             <div className='m-3 p-3 border rounded bg-white'>
                 <div className='d-flex justify-content-between'>
-                    <h4>Equipo</h4>
+                    <h4 className="text-primary">Equipo</h4>
                     <div>
                         <button className="btn btn-sm btn-outline-primary mx-2">Administrar</button>
                         <button className="btn btn-sm btn-outline-primary"><UserPlus size={16} /> Invitar Miembro</button>
@@ -57,7 +57,7 @@ const ProjectDetailsPage = () => {
 
             <div className='m-3 p-3 border rounded bg-white'>
                 <div className='d-flex justify-content-between'>
-                    <h4>Servicios</h4>
+                    <h4 className="text-primary">Servicios</h4>
                 </div>
                 <hr />
 

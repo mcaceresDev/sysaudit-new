@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import ProjectMainPage from '../features/Projects/pages/ProjectMainPage'
 import ProjectDetailsPage from '../features/Projects/pages/ProjectDetailsPage'
+import ServicePage from '../features/Services/pages/ServicePage'
 import MainLayout from '../layouts/MainLayout'
 
 export default function AppRoutes() {
@@ -19,6 +20,7 @@ export default function AppRoutes() {
           {/* <Route path="/" element={<Dashboard />} /> */}
           <Route path="/projects" element={<ProjectMainPage />} />
           <Route path="/projects/1" element={<ProjectDetailsPage />} />
+          <Route path="/service/1" element={<ServicePage />} />
           {/* <Route
             path="/projects/:projectId/services"
             element={<ServicesPage />}
