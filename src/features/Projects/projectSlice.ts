@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { fetchProjectsRequest, createProjectRequest } from './projectApi'
+import { fetchProjectsRequest, createProjectRequest, updateProjectRequest } from './projectApi'
+import type { Project, UpdateProjectPayload } from './project.types'
 
 export const fetchProjects = createAsyncThunk(
   'projects/fetch',
@@ -8,15 +9,22 @@ export const fetchProjects = createAsyncThunk(
   }
 )
 
-export const createProject = createAsyncThunk(
+export const createProject = createAsyncThunk<Project, Partial<Project>>(
   'projects/create',
-  async (data: any) => {
+  async (data) => {
     return await createProjectRequest(data)
   }
 )
 
+export const updateProject = createAsyncThunk<Project, UpdateProjectPayload>(
+  'projects/update',
+  async ({ id, data }) => {
+    return await updateProjectRequest(id, data)
+  }
+)
+
 interface ProjectsState {
-  items: any[]
+  items: Project[]
   loading: boolean
   error: string | null
 }
@@ -48,6 +56,18 @@ const projectsSlice = createSlice({
       // CREATE
       .addCase(createProject.fulfilled, (state, action) => {
         state.items.push(action.payload)
+      })
+      //UPDATE
+      .addCase(updateProject.fulfilled, (state, action) => {
+
+        const index = state.items.findIndex(
+          project => project.id === action.payload.id
+        )
+
+        if (index !== -1) {
+          state.items[index] = action.payload
+        }
+
       })
   }
 })

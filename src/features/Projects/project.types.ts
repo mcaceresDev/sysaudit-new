@@ -10,6 +10,11 @@ export interface UpdateProjectDTO {
   tecnologies?: string
 }
 
+export interface UpdateProjectPayload {
+  id: number
+  data: Partial<Project>
+}
+
 export interface ProjectFormData {
   name: string
   description?: string

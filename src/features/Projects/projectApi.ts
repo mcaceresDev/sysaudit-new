@@ -9,8 +9,8 @@ export const fetchProjectsRequest = async () => {
   return response
 }
 
-export const createProjectRequest = async (data: Project) => {
-  const response = await request({
+export const createProjectRequest = async (data: Partial<Project>) => {
+  const response = await request<Project>({
     method: "post",
     url: "/projects",
     data
@@ -19,7 +19,7 @@ export const createProjectRequest = async (data: Project) => {
 }
 
 export const updateProjectRequest = async (id: number, data: any) => {
-  const response = await request({
+  const response = await request<Project>({
     method: "put",
     url: `/projects/${id}`,
     data

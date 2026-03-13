@@ -1,28 +1,59 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { fetchProjects, createProject } from '../projectSlice'
+import { fetchProjects, createProject, updateProject } from '../projectSlice'
 import { Table } from '../../../components/Table'
 import { projectColumns } from '../helpers/projectColumns'
 import ProjectModal from '../components/ProjectModal'
+import type { Project, ProjectFormData } from '../project.types'
 
 
 const ProjectMainPage = () => {
 
   const dispatch = useAppDispatch()
-  const { items, loading } = useAppSelector(
+  const { items } = useAppSelector(
     state => state.projects
   )
 
-  const [globalFilter, setGlobalFilter] = useState('')
-
   const [showModal, setShowModal] = useState(false)
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
-  const handleCreate = async (data:any) => {
+  const openCreateModal = () => {
+    setSelectedProject(null)
+    setShowModal(true)
+  }
+  const handleEdit = (project: Project) => {
+    setSelectedProject(project)
+    setShowModal(true)
+  }
 
-    await dispatch(createProject(data)).unwrap()
+  const handleSubmit = async (data: ProjectFormData) => {
+
+    if (selectedProject) {
+      await dispatch(
+        updateProject({
+          id: selectedProject.id,
+          data
+        })
+      ).unwrap()
+
+    } else {
+
+      await dispatch(
+        createProject(data)
+      ).unwrap()
+
+    }
 
     setShowModal(false)
   }
+
+  const columns = useMemo(
+    () =>
+      projectColumns({
+        onEdit: handleEdit
+      }),
+    []
+  )
 
   useEffect(() => {
     dispatch(fetchProjects())
@@ -33,14 +64,21 @@ const ProjectMainPage = () => {
       <h2>Proyectos</h2>
       <hr />
       <div className='py-3'>
-        <button className="btn btn-sm btn-success" onClick={() => setShowModal(true)}>Crear nuevo</button>
+        <button className="btn btn-sm btn-success" onClick={openCreateModal}>Crear nuevo</button>
       </div>
-      <Table data={items} columns={projectColumns} />
+      <Table data={items} columns={columns} />
+
+      {/* <ProjectModal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        onSubmit={handleCreate}
+      /> */}
 
       <ProjectModal
         show={showModal}
         onClose={() => setShowModal(false)}
-        onSubmit={handleCreate}
+        onSubmit={handleSubmit}
+        defaultValues={selectedProject ?? undefined}
       />
     </div>
   )

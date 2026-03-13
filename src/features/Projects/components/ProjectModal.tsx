@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { projectSchema } from "../project.schema"
-import type { ProjectFormData } from "../project.types"
+import type { Project, ProjectFormData } from "../project.types"
 import "../styles/modal.css"
 import { useEffect, useState } from "react"
 
@@ -9,7 +9,7 @@ interface Props {
   show: boolean
   onClose: () => void
   onSubmit: (data: ProjectFormData) => Promise<void>
-  defaultValues?: ProjectFormData
+  defaultValues?: Project
 }
 
 export default function ProjectModal({
@@ -32,11 +32,24 @@ export default function ProjectModal({
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting }
   } = useForm<ProjectFormData>({
     resolver: zodResolver(projectSchema),
-    defaultValues
+    // defaultValues
   })
+
+  useEffect(() => {
+    if (defaultValues) {
+      reset(defaultValues)
+    } else {
+      reset({
+        name: "",
+        description: "",
+        tecnologies: ""
+      })
+    }
+  }, [defaultValues, reset])
 
   if (!show) return null
 
@@ -63,38 +76,27 @@ export default function ProjectModal({
             {/* Body */}
             <div className="modal-body">
 
-              <form
-                id="projectForm"
-                onSubmit={handleSubmit(onSubmit)}
-              >
+              <form id="projectForm" onSubmit={handleSubmit(onSubmit)}>
 
                 <div className="mb-3">
                   <label className="form-label">
                     Nombre
                   </label>
 
-                  <input
-                    className="form-control form-control-sm "
-                    {...register("name")}
-                  />
-
+                  <input className="form-control form-control-sm " {...register("name")} />
                   {errors.name && (
                     <small className="text-danger">
                       {errors.name.message}
                     </small>
                   )}
                 </div>
-                
+
                 <div className="mb-3">
                   <label className="form-label">
                     Tecnologías usadas
                   </label>
 
-                  <input
-                    className="form-control form-control-sm " placeholder="Ej: Java, Spring boot"
-                    {...register("tecnologies")}
-                  />
-
+                  <input className="form-control form-control-sm " placeholder="Ej: Java, Spring boot" {...register("tecnologies")}/>
                   {errors.tecnologies && (
                     <small className="text-danger">
                       {errors.tecnologies.message}
@@ -107,12 +109,7 @@ export default function ProjectModal({
                     Descripcion
                   </label>
 
-                  <textarea
-                    className="form-control form-control-sm "
-                    rows={4}
-                    {...register("description")}
-                  />
-
+                  <textarea className="form-control form-control-sm " rows={4} {...register("description")}/>
                   {errors.description && (
                     <small className="text-danger">
                       {errors.description.message}
@@ -139,16 +136,10 @@ export default function ProjectModal({
             </div>
 
           </div>
-
         </div>
-
-        {/* Backdrop */}
-        {/* <div className="modal-backdrop fade show"></div> */}
-
       </div>
-      <div
-        className={`modal-backdrop fade ${visible ? "show" : ""}`}
-      ></div>
+
+      <div className={`modal-backdrop fade ${visible ? "show" : ""}`}> </div>
     </>
   )
 }
