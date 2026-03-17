@@ -3,6 +3,7 @@ import ProjectMainPage from '../features/Projects/pages/ProjectMainPage'
 import ProjectDetailsPage from '../features/Projects/pages/ProjectDetailsPage'
 import ServicePage from '../features/Services/pages/ServicePage'
 import MainLayout from '../layouts/MainLayout'
+import ServiceEndpointsPage from '../features/Services/pages/ServiceEndpoints'
 
 export default function AppRoutes() {
   return (
@@ -21,6 +22,7 @@ export default function AppRoutes() {
           <Route path="/projects" element={<ProjectMainPage />} />
           <Route path="/projects/1" element={<ProjectDetailsPage />} />
           <Route path="/service/1" element={<ServicePage />} />
+          <Route path="/service-endpoints/1" element={<ServiceEndpointsPage />} />
           {/* <Route
             path="/projects/:projectId/services"
             element={<ServicesPage />}

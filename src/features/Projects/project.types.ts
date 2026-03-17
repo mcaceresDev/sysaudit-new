@@ -5,7 +5,7 @@ export interface Project {
 }
 
 export interface UpdateProjectDTO {
-  name?: string
+  name: string
   description?: string
   tecnologies?: string
 }
