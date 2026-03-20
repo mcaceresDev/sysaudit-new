@@ -22,7 +22,7 @@ const ServicePage = () => {
       <div className='my-3 p-3 border rounded bg-white'>
         <div className='d-flex justify-content-between align-items-center'>
           <h4>Infraestructura</h4>
-          <button className="btn btn-sm btn-outline-primary">Agregar nuevo</button>
+          <button className="btn btn-sm btn-outline-primary">Agregar nuevo ambiente</button>
         </div>
         <hr />
         <h5>Ambientes 2</h5>

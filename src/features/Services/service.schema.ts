@@ -9,3 +9,19 @@ export const serviceSchema = z.object({
 })
 
 export type ProjectFormData = z.infer<typeof serviceSchema>
+
+
+//PARA FORMULARIO DINAMICO
+export const paramSchema = z.object({
+  name: z.string().min(1, "Key requerida"),
+  required: z.boolean().optional(),
+  description: z.string().optional(),
+  type: z.enum(["string", "number", "boolean"]),
+  in: z.enum(["query", "path", "header", "body"])
+})
+
+export const paramsFormSchema = z.object({
+  params: z.array(paramSchema)
+})
+
+export type ParamsFormData = z.infer<typeof paramsFormSchema>
